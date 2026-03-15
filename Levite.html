@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Levite Consultancy & Advisory | Learn, Lead, Levitate.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ════ TOKENS ════ */
+:root {
+  --navy:       #00112e;
+  --navy-mid:   #001a4d;
+  --navy-deep:  #000b1f;
+  --blue:       #003380;
+  --gold:       #c1a84a;
+  --gold-lt:    #dac97a;
+  --gold-dim:   #8a7430;
+  --gold-glow:  rgba(193,168,74,0.18);
+  --white:      #ffffff;
+  --w80:        rgba(255,255,255,0.80);
+  --w55:        rgba(255,255,255,0.55);
+  --w30:        rgba(255,255,255,0.30);
+  --w08:        rgba(255,255,255,0.08);
+  --w04:        rgba(255,255,255,0.04);
+  --border:     rgba(193,168,74,0.18);
+  --border-md:  rgba(193,168,74,0.35);
+  --ease:       cubic-bezier(0.16,1,0.3,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Raleway',sans-serif;background:var(--navy-deep);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
+img{max-width:100%;height:auto;}
+::selection{background:var(--gold);color:var(--navy-deep);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy-deep);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+
+/* ════ CURSOR ════ */
+#c-dot,#c-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;border-radius:50%;transform:translate(-50%,-50%);}
+#c-dot{width:6px;height:6px;background:var(--gold);}
+#c-ring{width:32px;height:32px;border:1px solid rgba(193,168,74,0.55);transition:width .3s var(--ease),height .3s var(--ease),border-color .3s;}
+
+/* ════ DISCLAIMER ════ */
+#disc{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;padding:20px;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right));}
+#disc-cv{position:absolute;inset:0;}
+.db{position:relative;z-index:1;max-width:750px;width:100%;background:rgba(0,8,22,0.97);border:1px solid var(--border-md);padding:56px 52px;animation:slideUp .9s var(--ease) .2s both;max-height:100vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:none;}
+.db::before,.db::after{content:'';position:absolute;width:30px;height:30px;border-color:var(--gold);border-style:solid;}
+.db::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.db::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+.db-ic::before,.db-ic::after{content:'';position:absolute;width:30px;height:30px;border-color:rgba(193,168,74,.25);border-style:solid;}
+.db-ic::before{top:-1px;right:-1px;border-width:2px 2px 0 0;}
+.db-ic::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+.db-seal{text-align:center;margin-bottom:30px;}
+.db-kicker{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:.8;}
+.db-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5vw,36px);font-weight:600;text-align:center;color:var(--white);margin-bottom:22px;}
+.db-rule{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:26px;}
+.db-text{font-size:clamp(13px,2.2vw,14.5px);line-height:1.95;font-weight:300;color:var(--w80);text-align:center;margin-bottom:38px;}
+.db-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.db-btn{font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:3px;text-transform:uppercase;font-weight:600;padding:15px 44px;min-height:48px;min-width:120px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:var(--navy-deep);border:none;cursor:pointer;position:relative;overflow:hidden;transition:box-shadow .4s,transform .3s;}
+.db-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.22),transparent);transform:translateX(-100%);transition:transform .5s;}
+.db-btn:hover::after{transform:translateX(100%);}
+.db-btn:hover{box-shadow:0 0 40px rgba(193,168,74,.4);transform:translateY(-2px);}
+.db-ghost{font-family:'Raleway',sans-serif;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:15px 36px;min-height:48px;background:transparent;color:var(--w30);border:1px solid rgba(255,255,255,.18);cursor:pointer;transition:color .3s,border-color .3s;}
+.db-ghost:hover{color:var(--white);border-color:var(--w55);}
+
+/* ════ MAIN SITE ════ */
+#site{display:none;opacity:0;transition:opacity 1s ease;}
+#site.show{opacity:1;}
+
+/* ════ NAV ════ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:800;height:86px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,64px);padding-left:max(clamp(16px,4vw,64px),env(safe-area-inset-left));padding-right:max(clamp(16px,4vw,64px),env(safe-area-inset-right));transition:height .5s var(--ease);}
+.nav-bg{position:absolute;inset:0;background:rgba(0,6,18,0);backdrop-filter:blur(0);border-bottom:1px solid transparent;transition:background .5s,backdrop-filter .5s,border-color .5s;z-index:-1;}
+.nav.solid .nav-bg{background:rgba(0,6,18,.97);backdrop-filter:blur(22px);border-bottom-color:var(--border);}
+.nav.solid{height:70px;}
+.nav-logo{display:flex;align-items:center;gap:13px;text-decoration:none;}
+.nav-logo-img{height:72px;width:auto;max-width:260px;object-fit:contain;display:block;}
+.nav-mark{width:46px;height:46px;border:1px solid var(--border-md);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--gold);transition:box-shadow .3s;}
+.nav-logo:hover .nav-mark{box-shadow:0 0 24px var(--gold-glow);}
+.nav-brand{display:flex;flex-direction:column;line-height:1.1;}
+.nav-name{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--white);letter-spacing:2px;}
+.nav-sub{font-size:8.5px;letter-spacing:3.5px;color:var(--gold);text-transform:uppercase;opacity:.85;}
+.nav-menu{display:flex;align-items:center;gap:36px;list-style:none;}
+.nav-menu a{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--w80);text-decoration:none;transition:color .3s;position:relative;}
+.nav-menu a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease);}
+.nav-menu a:hover{color:var(--gold);}
+.nav-menu a:hover::after{width:100%;}
+.nav-cta{font-family:'Cinzel',serif!important;font-size:9.5px!important;padding:11px 28px;border:1px solid var(--gold)!important;color:var(--gold)!important;transition:background .3s,color .3s!important;}
+.nav-cta:hover{background:var(--gold)!important;color:var(--navy-deep)!important;}
+.nav-cta::after{display:none!important;}
+.nav-burger{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:4px;}
+.nav-burger span{width:26px;height:1.5px;background:var(--white);display:block;transition:all .3s;}
+
+/* ════ HERO LAYOUT ════ */
+.hero-wrap{margin-top:86px;}
+
+.hero-banner{position:relative;overflow:hidden;height:80vh;min-height:min(550px,100dvh);max-height:900px;background:#000b1f;cursor:default;display:flex;align-items:center;justify-content:center;}
+#hcv{position:absolute;inset:0;width:100%;height:100%;}
+.hb-vl,.hb-vr{position:absolute;top:0;bottom:0;z-index:2;width:22%;pointer-events:none;}
+.hb-vl{left:0;background:linear-gradient(90deg,rgba(0,6,20,.88) 0%,transparent);}
+.hb-vr{right:0;background:linear-gradient(270deg,rgba(0,6,20,.88) 0%,transparent);}
+.hb-focal{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 55% 70% at 50% 80%,rgba(0,38,100,.32) 0%,transparent 70%);}
+.hb-text{position:relative;z-index:5;text-align:center;animation:slideUp 1.3s var(--ease) .4s both;padding:0 clamp(16px,4vw,40px);}
+.hb-kicker{font-family:'Cinzel',serif;font-size:clamp(15px,5vw,16px);letter-spacing:7px;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:20px;}
+.hb-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6vw,80px);font-weight:700;line-height:1.1;color:var(--white);letter-spacing:-1px;}
+.hb-title em{font-style:italic;font-weight:300;color:var(--gold);display:block;font-size:.65em;letter-spacing:1px;margin-top:10px;}
+.hb-desc{font-size:clamp(14px,2.2vw,16px);font-weight:300;line-height:1.8;color:var(--w80);max-width:800px;margin:28px auto 0;animation:slideUp 1.3s var(--ease) .6s both;}
+.hb-tag{position:absolute;z-index:6;bottom:0;right:0;background:rgba(0,4,14,.84);backdrop-filter:blur(14px);border-top:1px solid var(--border-md);border-left:1px solid var(--border-md);padding:14px 34px;font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w80);display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .3s,color .3s;min-height:48px;}
+.hb-tag:hover{background:rgba(193,168,74,.12);color:var(--gold);}
+.hb-tag .a{color:var(--gold);font-size:18px;}
+
+/* Three panels */
+.hero-panels{display:grid;grid-template-columns:1fr 1fr 1fr;min-height:215px;}
+.hp{position:relative;overflow:hidden;cursor:pointer;border-right:1px solid rgba(193,168,74,.1);}
+.hp:last-child{border-right:none;}
+.hp-bg{position:absolute;inset:0;transition:transform .8s var(--ease);}
+.hp:hover .hp-bg{transform:scale(1.06);}
+.hp:nth-child(1) .hp-bg{background:linear-gradient(145deg,#0a1628,#002060);}
+.hp:nth-child(2) .hp-bg{background:linear-gradient(145deg,#050e20,#001035);}
+.hp:nth-child(3) .hp-bg{background:linear-gradient(145deg,#0d1828,#001848);}
+.hp-tex{position:absolute;inset:0;z-index:1;background-image:repeating-linear-gradient(90deg,rgba(193,168,74,.025) 0,rgba(193,168,74,.025) 1px,transparent 1px,transparent 80px);}
+.hp-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,4,18,.9) 0%,rgba(0,4,18,.18) 100%);transition:background .4s;}
+.hp:hover .hp-scrim{background:linear-gradient(to top,rgba(0,8,28,.96) 0%,rgba(0,8,28,.38) 100%);}
+.hp-bar{position:absolute;top:0;left:0;bottom:0;width:3px;z-index:5;background:linear-gradient(180deg,var(--gold),var(--gold-dim));transform:scaleY(0);transform-origin:bottom;transition:transform .45s var(--ease);}
+.hp:hover .hp-bar{transform:scaleY(1);}
+.hp-top{position:absolute;top:0;left:0;right:0;height:2px;z-index:5;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
+.hp:hover .hp-top{transform:scaleX(1);}
+.hp-ico{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px;opacity:.05;transition:opacity .4s,transform .5s;user-select:none;}
+.hp:hover .hp-ico{opacity:.1;transform:translate(-50%,-50%) scale(1.15);}
+.hp-num{position:absolute;top:18px;right:20px;z-index:3;font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:700;line-height:1;color:rgba(193,168,74,.05);transition:color .4s;user-select:none;}
+.hp:hover .hp-num{color:rgba(193,168,74,.12);}
+.hp-ct{position:absolute;z-index:6;bottom:0;left:0;right:0;padding:0 clamp(16px,3vw,28px) clamp(18px,3vw,26px);display:flex;align-items:flex-end;justify-content:space-between;}
+.hp-label{font-family:'Cinzel',serif;font-size:clamp(12px,2vw,15px);letter-spacing:3px;text-transform:uppercase;color:var(--white);font-weight:600;text-shadow:0 2px 12px rgba(0,0,0,.8);}
+.hp-cta{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:6px;opacity:0;transform:translateX(-10px);transition:opacity .35s,transform .35s var(--ease);}
+.hp:hover .hp-cta{opacity:1;transform:translateX(0);}
+
+/* ════ GOLD DIVIDER ════ */
+.gdiv{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--gold-lt) 50%,var(--gold) 75%,transparent);}
+
+/* ════ ABOUT / SECTIONS ════ */
+.about{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:linear-gradient(160deg,#050a18,#000b1f);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,8vw,100px);align-items:center;}
+.about.rev {grid-template-columns:1.1fr 1fr;}
+.sk{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:14px;}
+.sk::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0;}
+.st{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:400;line-height:1.1;color:var(--white);margin-bottom:28px;}
+.st em{font-style:italic;color:var(--gold);}
+.sb{font-size:15px;line-height:1.9;font-weight:300;color:var(--w80);margin-bottom:18px;}
+.about-card{background:var(--w04);border:1px solid var(--border);padding:clamp(28px,5vw,52px) clamp(24px,4vw,48px);position:relative;}
+.about-card::before,.about-card::after{content:'';position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid;}
+.about-card::before{top:-1px;right:-1px;border-width:2px 2px 0 0;}
+.about-card::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+
+/* Custom List for Institutional */
+.core-list {list-style: none; margin-top: 24px;}
+.core-list li{font-size:clamp(14px,2vw,15px);color:var(--w55);margin-bottom:24px;line-height:1.7;display:flex;align-items:flex-start;gap:12px;font-weight:300;}
+.core-list li::before{content:'✦';color:var(--gold);font-size:14px;margin-top:2px;}
+.core-list li strong{color:var(--white);font-weight:500;font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,18px);letter-spacing:0.5px;}
+
+/* ════ SCROLLING TESTIMONIALS ════ */
+.test{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:var(--navy-deep);overflow:hidden;}
+.sec-hd{text-align:center;margin-bottom:72px;position:relative;z-index:1;}
+.sec-hd .sk{justify-content:center;}
+.sec-hd .sk::before{display:none;}
+.sec-hd .sk::after{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0;}
+
+/* Horizontal Scroll Grid */
+.test-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
+  padding-bottom: 40px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) var(--navy-deep);
+}
+.test-grid::-webkit-scrollbar { height: 6px; }
+.test-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
+.test-grid::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
+
+.tc{background:var(--w04);border:1px solid var(--border);padding:clamp(24px,4vw,44px) clamp(20px,3vw,36px);position:relative;transition:border-color .4s,background .4s;flex:0 0 min(400px,85vw);scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;}
+.tc:hover{border-color:var(--border-md);background:var(--w08);}
+.tc::before{content:'"';position:absolute;top:20px;right:28px;font-family:'Cormorant Garamond',serif;font-size:80px;line-height:1;color:var(--gold);opacity:.14;}
+.tc-focus{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom: 12px;}
+.tc-text{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,17px);font-style:italic;font-weight:400;line-height:1.65;color:var(--w80);margin-bottom:28px;flex-grow:1;}
+.tc-rule{height:1px;background:var(--border);margin-bottom:20px;}
+.tc-author{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);}
+.tc-role{font-size:11px;color:var(--w55);margin-top:6px;font-weight:300; line-height: 1.5;}
+
+/* ════ CONTACT ════ */
+.contact{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:linear-gradient(160deg,#050a18,#000b1f);display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(40px,8vw,90px);align-items:start;}
+.ci-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(193,168,74,.08); text-decoration: none;}
+.ci-item:first-of-type{border-top:1px solid rgba(193,168,74,.08);}
+.ci-ico{width:44px;height:44px;flex-shrink:0;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;transition:border-color .3s; color: var(--gold);}
+.ci-item:hover .ci-ico{border-color:var(--gold);}
+.ci-lbl{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ci-val{font-size:14px;color:var(--w80);font-weight:300;line-height:1.5; transition: color .3s;}
+a.ci-item:hover .ci-val {color: var(--gold);}
+.cf{display:flex;flex-direction:column;gap:18px;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.cf-grp{display:flex;flex-direction:column;gap:8px;}
+.cf-lbl{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);opacity:.85;}
+.cf-in,.cf-ta{background:var(--w04);border:1px solid var(--border);color:var(--white);padding:14px 16px;min-height:48px;font-family:'Raleway',sans-serif;font-size:16px;font-weight:300;outline:none;transition:border-color .3s,background .3s;width:100%;}
+.cf-in:focus,.cf-ta:focus{border-color:var(--gold-dim);background:rgba(193,168,74,.03);}
+.cf-in::placeholder,.cf-ta::placeholder{color:rgba(255,255,255,.24);}
+.cf-ta{height:120px;min-height:120px;resize:vertical;}
+.cf-sub{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:700;padding:18px;min-height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-dim));color:var(--navy-deep);border:none;cursor:pointer;position:relative;overflow:hidden;transition:box-shadow .4s;}
+.cf-sub::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .5s;}
+.cf-sub:hover::after{transform:translateX(100%);}
+.cf-sub:hover{box-shadow:0 6px 32px rgba(193,168,74,.4);}
+.cf-note{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.7;font-style:italic;}
+
+/* ════ FOOTER ════ */
+footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,8vw,70px) clamp(20px,6vw,80px) max(44px,env(safe-area-inset-bottom));}
+.fg{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:clamp(24px,5vw,64px);margin-bottom:56px;}
+.fn{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--white);letter-spacing:2px;}
+.fs{font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
+.fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.7;color:var(--w55);margin-bottom:28px;}
+.fct{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.fl{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.fl a{font-size:12.5px;color:var(--w55);text-decoration:none;font-weight:300;display:flex;align-items:center;gap:10px;transition:color .3s;}
+.fl a::before{content:'—';font-size:10px;color:var(--gold);opacity:.4;}
+.fl a:hover{color:var(--gold);}
+.fl a:hover::before{opacity:1;}
+.fb{border-top:1px solid rgba(255,255,255,.04);padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.fc{font-size:11.5px;color:rgba(255,255,255,.24);font-weight:300;}
+.fn2{font-size:10.5px;color:rgba(255,255,255,.18);font-style:italic;max-width:480px;text-align:right;line-height:1.6;}
+
+/* ════ REVEAL ════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.1s;}.rd2{transition-delay:.2s;}.rd3{transition-delay:.3s;}.rd4{transition-delay:.4s;}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+
+/* ════ RESPONSIVE — All devices & sizes ════ */
+/* Large desktop */
+@media(max-width:1400px){
+  .nav-logo-img{max-width:220px;height:110px;}
+}
+/* Desktop to tablet */
+@media(max-width:1100px){
+  .about,.contact{grid-template-columns:1fr;gap:60px;padding:90px 48px;}
+  .about.rev{grid-template-columns:1fr;}
+  .fg{grid-template-columns:1fr 1fr;gap:40px;}
+  .nav-menu{gap:28px;}
+}
+/* Tablet: show hamburger earlier so nav doesn't cramp */
+@media(max-width:900px){
+  .nav{height:70px;padding:0 20px;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right));}
+  .nav.solid{height:64px;}
+  .nav-menu{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(0,4,14,.98);backdrop-filter:blur(16px);padding:24px 28px;gap:8px;border-bottom:1px solid var(--border);max-height:80vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .nav-menu.open{display:flex;}
+  .nav-menu a{font-size:11px;padding:14px 0;min-height:44px;display:flex;align-items:center;}
+  .nav-burger{display:flex;min-width:44px;min-height:44px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;}
+  .nav-logo-img{height:90px;max-width:180px;}
+  .hero-wrap{margin-top:70px;}
+  .hero-banner{min-height:min(480px,85vh);padding:40px 0;}
+  .hb-tag{left:0;border-left:none;justify-content:center;}
+  .hero-panels{grid-template-columns:1fr;min-height:auto;}
+  .hp{min-height:100px;border-right:none;border-bottom:1px solid rgba(193,168,74,.1);}
+  .hp-ico{font-size:60px;}
+  .hp-num{font-size:52px;}
+  .about,.contact,.test{padding:64px 28px;}
+  .about.rev{display:flex;flex-direction:column;}
+  .about.rev > div:first-child{order:2;}
+  .about.rev > div:last-child{order:1;}
+  .tc{flex:0 0 min(320px,88vw);}
+  .fg{grid-template-columns:1fr;gap:36px;}
+  footer{padding:48px 28px 36px;}
+  .cf-row{grid-template-columns:1fr;}
+  .fb{flex-direction:column;align-items:flex-start;gap:20px;}
+  .fn2{text-align:left;max-width:none;}
+  #c-dot,#c-ring{display:none;}
+}
+/* Mobile */
+@media(max-width:600px){
+  .db{padding:36px 24px;margin:16px;}
+  .db-title{font-size:22px;}
+  .db-text{font-size:13px;margin-bottom:28px;}
+  .about,.contact,.test{padding:48px 20px;}
+  .st{font-size:clamp(28px,8vw,42px);}
+  .sb{font-size:14px;}
+  .sec-hd{margin-bottom:48px;}
+  .test-grid{padding-bottom:24px;gap:16px;}
+  .tc{flex:0 0 min(280px,92vw);padding:28px 20px;}
+  .tc-text{font-size:15px;}
+  .ci-ico{width:40px;height:40px;font-size:16px;}
+  .ci-item{padding:18px 0;}
+  .fn{font-size:18px;}
+  .fd{font-size:14px;}
+  .fc,.fn2{font-size:10px;}
+}
+/* Small phones */
+@media(max-width:480px){
+  .nav{padding:0 16px;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right));}
+  .nav-logo-img{height:50px;max-width:160px;}
+  .nav.solid{height:64px;}
+  .nav{height:72px;}
+  .hero-wrap{margin-top:72px;}
+  .hero-banner{min-height:min(400px,80vh);padding:32px 0;}
+  .hb-title{font-size:clamp(26px,8vw,40px);}
+  .hb-desc{font-size:13px;margin-top:20px;}
+  .hb-tag{padding:12px 20px;font-size:8.5px;}
+  .hp{min-height:88px;}
+  .hp-label{font-size:11px;}
+  .hp-ct{padding:0 16px 18px;}
+  .about,.contact,.test{padding:40px 16px;}
+  .about-card{padding:24px 20px;}
+  .st{font-size:clamp(24px,7vw,36px);}
+  .tc{flex:0 0 min(260px,95vw);}
+  footer{padding:40px 16px 32px;}
+  .fg{gap:28px;margin-bottom:40px;}
+  .fb{gap:16px;}
+}
+/* Extra small (e.g. 320px) */
+@media(max-width:360px){
+  .db{padding:28px 16px;}
+  .db-title{font-size:20px;}
+  .db-actions{flex-direction:column;width:100%;}
+  .db-btn,.db-ghost{width:100%;justify-content:center;}
+  .hb-title{font-size:24px;}
+  .about,.contact,.test{padding:32px 12px;}
+  .tc{flex:0 0 100%;}
+  .cf-sub{width:100%;}
+  .about-card-visual{height:220px!important;}
+}
+@media(max-width:600px){
+  .about-card-visual{height:280px!important;}
+}
+/* Landscape phones: reduce hero height so content fits */
+@media(max-height:500px) and (orientation:landscape){
+  .hero-banner{min-height:auto;height:auto;padding:40px 20px;}
+  .hero-wrap{margin-top:70px;}
+  .hb-title{font-size:clamp(28px,5vw,48px);}
+  .hb-desc{margin-top:16px;}
+}
+/* Touch: ensure tap targets (redundant where min-height already set) */
+@media(hover:none) and (pointer:coarse){
+  .nav-menu a{padding:14px 0;}
+  .hp{cursor:pointer;}
+  .db-btn,.db-ghost{min-height:48px;}
+}
+/* Prefer reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+}
+</style>
+</head>
+<body>
+
+<div id="c-dot"></div>
+<div id="c-ring"></div>
+
+<div id="disc">
+  <canvas id="disc-cv"></canvas>
+  <div class="db">
+    <div class="db-ic"></div>
+    <div class="db-seal">
+      <div class="db-kicker">Advisory</div>
+    </div>
+    <h2 class="db-title">Welcome to Levite Consultancy &amp; Advisory</h2>
+    <div class="db-rule"></div>
+    <p class="db-text">We provide AI powered strategic, lean, and holistic solutions for complex and specialized matters. To comply with the professional rules regarding legal practitioners, this website is meant solely for informational purposes and does not constitute advertisement, solicitation, or professional advice. By proceeding, you acknowledge that you are seeking information about Advocate Shine Thomas and his firm Levite Consultancy &amp; Advisory of your own accord and that no professional relationship is created by accessing this site.</p>
+    <div class="db-actions">
+      <button class="db-btn" onclick="enterSite()">Agree &amp; Proceed</button>
+      <button class="db-ghost" onclick="window.location.href='https://google.com'">Decline</button>
+    </div>
+  </div>
+</div>
+
+<div id="site">
+
+<nav class="nav" id="nav">
+  <div class="nav-bg"></div>
+  <a href="#" class="nav-logo">
+    <img src="levite-logo.png" alt="Levite Consultancy &amp; Advisory" class="nav-logo-img">
+  </a>
+  <ul class="nav-menu" id="nm">
+    <li><a href="#about-me">About Me</a></li>
+    <li><a href="#vision">The Vision</a></li>
+    <li><a href="#institutional">Institutional</a></li>
+    <li><a href="#empowerment">Empowerment</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact" class="nav-cta">Connect</a></li>
+  </ul>
+  <div class="nav-burger" id="burger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero-banner">
+    <canvas id="hcv"></canvas>
+    <div class="hb-focal"></div>
+    <div class="hb-vl"></div><div class="hb-vr"></div>
+    <div class="hb-text">
+      <div class="hb-kicker">Levite</div>
+      <h1 class="hb-title">A LEAN &amp; VIRTUAL FIRST<br><em>Global Consultancy.</em></h1>
+      <h3 style="font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 4px; margin-top: 20px; font-weight: 500;">Learn, Lead, Levitate.</h3>
+      <p class="hb-desc">In an age where AI-driven automation often creates barriers between institutions and individuals, Levite provides the modern support structure to navigate the digital shift. We empower you to Learn the cause of the complexity, Lead the path to accountability, and Levitate beyond the gravity of systemic glitches.</p>
+    </div>
+    <div class="hb-tag" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
+      Read More <span class="a">›</span>
+    </div>
+  </div>
+
+  <div class="hero-panels">
+    <div class="hp" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
+      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
+      <div class="hp-bar"></div><div class="hp-top"></div>
+      <div class="hp-ico">👁️</div><div class="hp-num">A</div>
+      <div class="hp-ct">
+        <div class="hp-label">The Vision</div>
+        <div class="hp-cta">Explore <span>›</span></div>
+      </div>
+    </div>
+    <div class="hp" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
+      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
+      <div class="hp-bar"></div><div class="hp-top"></div>
+      <div class="hp-ico">🏢</div><div class="hp-num">B</div>
+      <div class="hp-ct">
+        <div class="hp-label">Institutional</div>
+        <div class="hp-cta">Explore <span>›</span></div>
+      </div>
+    </div>
+    <div class="hp" onclick="document.getElementById('empowerment').scrollIntoView({behavior:'smooth'})">
+      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
+      <div class="hp-bar"></div><div class="hp-top"></div>
+      <div class="hp-ico">🛡️</div><div class="hp-num">C</div>
+      <div class="hp-ct">
+        <div class="hp-label">Empowerment</div>
+        <div class="hp-cta">Explore <span>›</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gdiv"></div>
+
+<section class="about" id="vision">
+  <div>
+    <div class="sk reveal">Panel A</div>
+    <h2 class="st reveal">The <em>Vision</em></h2>
+    <p class="sb reveal">My Vision for Levite Consultancy</p>
+    <p class="sb reveal rd1">Levite Consultancy was conceived during a break from my active employment of around 20 years in 2021, while I was engaged in part-time insurance claims and business consultancy assignments. This period also allowed me to immerse myself in extensive study and research of law, development in AI and most importantly the conjunction of all of it. </p>
+    <p class="sb reveal rd2">My core belief for Levite is captured in our tagline: <em>Learn, Lead, Levitate.</em> It embodies the journey I envision for myself, our clients, and our associates – from acquiring essential knowledge, to confidently leading and implementing innovation for wider good, and ultimately, to rising above challenges and achieving wellbeing, through the power of AI.</p>
+  </div>
+  <div class="reveal rd2">
+    <div class="about-card" style="padding: 60px; text-align: center;">
+      <div style="font-size: 70px; margin-bottom: 20px;">👁️</div>
+      <p style="font-size: 18px; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">Learn. Lead. Levitate.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about rev" id="institutional" style="background: linear-gradient(135deg, #020610, #001233);">
+  <div class="reveal rd2">
+    <div class="about-card" style="background: transparent; border: none; padding: 0;">
+      <div class="about-card-visual" style="width: 100%; height: 350px; background: linear-gradient(to bottom, rgba(193,168,74,0.05), transparent), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 opacity=%220.1%22><defs><pattern id=%22grid%22 width=%2240%22 height=%2240%22 patternUnits=%22userSpaceOnUse%22><path d=%22M 40 0 L 0 0 0 40%22 fill=%22none%22 stroke=%22%23c1a84a%22 stroke-width=%221%22/></pattern></defs><rect width=%22100%25%22 height=%22100%25%22 fill=%22url(%23grid)%22/></svg>'); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;">
+        <div style="font-size: 80px; text-shadow: 0 0 30px rgba(193,168,74,0.5);">🏢</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sk reveal">For Organisations</div>
+    <h2 class="st reveal"><em>Institutional</em></h2>
+    <p class="sb reveal">This page details strategic consulting for enterprises, focusing on safeguarding against the new age service automation, Boatification of critical Support functions by service providers, SME M&amp;A support, and insurance claims handholding. It emphasizes how lean, custom teams are assembled globally to handle specific projects.</p>
+    
+    <ul class="core-list reveal rd1">
+      <li><div><strong>Conflict &amp; Complexity Management</strong><br>Resolving claims stalled by conflicting insurance policy interpretations and surveyor opinions.</div></li>
+      <li><div><strong>Mitigation of Interest</strong><br>Managing conflicting interests between banks, insurance companies, and policyholders to find equitable solutions.</div></li>
+      <li><div><strong>Collaborations for growth</strong><br>In a world of investor backed intuitions the formula for success is to be agile and proactive. We work with challengers to have the right resource at the right time.</div></li>
+    </ul>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about" id="empowerment">
+  <div>
+    <div class="sk reveal">For Individuals</div>
+    <h2 class="st reveal"><em>Empowerment</em></h2>
+    <p class="sb reveal">This page focuses on Individuals either mislead by service providers at times due to unfair trade practices or facing issues of deficiency in service which at times further gets aggravated by use of AI by service providers.</p>
+  </div>
+  <div class="reveal rd2">
+    <div class="about-card" style="padding: 60px; text-align: center;">
+      <div style="font-size: 70px; margin-bottom: 20px;">🛡️</div>
+      <p style="font-size: 18px; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">Restoring Balance.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about rev" id="about-me" style="background: var(--navy-deep);">
+  <div class="reveal rd2">
+    <div class="about-card">
+      <div class="aa" style="font-size: 14px; margin-bottom: 12px;">Principal Consultant</div>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--white); margin-bottom: 16px;">Adv. Shine Thomas</h3>
+      <p style="font-size: 14px; line-height: 1.8; color: var(--w80); font-weight: 300; margin-bottom: 24px;">Led by Adv. Shine Thomas, holding qualifications in <strong>B.Com, PGDBM, FIII, LLB</strong>—combining legal rigor with deep insurance and business management expertise.</p>
+      <div style="height: 1px; background: var(--border); margin-bottom: 24px;"></div>
+      <p style="font-size: 14px; line-height: 1.8; color: var(--gold); font-weight: 400;">We are a new-age global entity built on a lean concept of a purely online presence. We focus exclusively on the quality of expertise, approaching each assignment as a project and constituting custom teams of world-class talent tailored to identify holistic solutions. And most importantly with AI at the core of everything we do.</p>
+    </div>
+  </div>
+  <div>
+    <div class="sk reveal">About Levite</div>
+    <h2 class="st reveal">Advocate Shine Thomas<br><em>Speaks</em></h2>
+    <p class="sb reveal">I view the AI revolution as the next seismic shift, comparable in impact to the internet and telecommunication revolution. Recognizing this impending transformation, I made a major strategic move in 2021: I stepped away from my Senior Vice President role at a leading specialty insurance MNC to invest intensely in realigning myself with the coming age embedded in AI.</p>
+    <p class="sb reveal rd1">My two-decade career is built on deep operational familiarity with financial and insurance sectors, starting my career with a successful startup and then working for 12 years in a leading MNC. This enabled me to cover the entire administration spectrum, from product design to large claims (including property, liabilities, and niche financial products). This background, validated by my Fellowship in Insurance (FIII), makes me a seasoned professional in complex dynamic financial situations.</p>
+    <p class="sb reveal rd2">Now, as a consultant and registered advocate, I focus on bridging this industry knowledge with strategic technology for the larger good. I leverage my experience and extensive network to ensure customers are empowered by technology, not victimized by its misapplication. I believe the future lies in combining specialized human insight with AI's power.</p>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="test" id="testimonials">
+  <div class="sec-hd">
+    <div class="sk reveal">Community Voice &amp; Pro-bono Stories</div>
+    <h2 class="st reveal">What People <em>Say</em></h2>
+  </div>
+  <div class="test-grid">
+    <div class="tc reveal">
+      <div class="tc-focus">Long-term partnership and SPV claim settlement.</div>
+      <p class="tc-text">"Adv. Shine Thomas has been an integral part of our insurance programs for over 15 years, continuing to support us as a consultant even after his tenure as a Senior VP at an MNC. Most notably, his expertise was instrumental in achieving an amicable settlement for a long-pending insurance claim related to our Karnataka tollway project. His dedication and successful handling of complex assignments are truly exemplary."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">KVRSS Sharma</div>
+      <div class="tc-role">Chief General Manager<br>GVR Infra Projects Limited</div>
+    </div>
+    <div class="tc reveal rd1">
+      <div class="tc-focus">Marine transit and solar power project claims.</div>
+      <p class="tc-text">"We would like to record our sincere appreciation for the support provided in realizing the Marine Transit claim for our solar power project in Orissa. Your professional approach, detailed methodology, and ability to achieve exact customer satisfaction were vital to the successful settlement of this claim. We wish you and the team all the best."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Mohan Rao Adhikari</div>
+      <div class="tc-role">Chief Financial Officer<br>Raajratna Energy Holdings Private Limited</div>
+    </div>
+    <div class="tc reveal rd2">
+      <div class="tc-focus">Providing the best value and great customer service.</div>
+      <p class="tc-text">"I interacted with Shine when I was heading Compensation and Benefits for India. Shine has been consistent in his approach towards providing services to Capgemini – always providing the best value, great customer service and providing valuable suggestions. His professional approach to the work reflected in his team too. I never found any of the team members wanting in their performance. He is an asset to any organization as leader with high integrity and Subject Matter Expertise."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Sanjeeva Maithani</div>
+      <div class="tc-role">CHRO &amp; CEO Partner | Global People Strategy Leader</div>
+    </div>
+    <div class="tc reveal">
+      <div class="tc-focus">Technical expertise during natural disasters (floods).</div>
+      <p class="tc-text">"Following the devastating floods in Karnataka in May 2022, Adv. Thomas stepped in when our regular agents could not provide the necessary help. He guided us through the intricacies of a complex Hydropower project insurance claim, ensuring a fair and amicable settlement. We wholeheartedly recommend his services to anyone facing challenging insurance matters; he is a professional and invaluable asset."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">T. Sathish</div>
+      <div class="tc-role">Director<br>GVP Infra Projects Private Limited</div>
+    </div>
+    <div class="tc reveal rd1">
+      <div class="tc-focus">Customer management &amp; financial portfolio insights.</div>
+      <p class="tc-text">"Shine has been a result oriented financial advisor to me. His skills on the subject matter and more than that soft skills in customer management are exemplary. He had been squarely instrumental in creating portfolio and managing the family wealth through his insight into financial markets and investment scenarios. I will vouch for him."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Ajit Gokhale</div>
+      <div class="tc-role">Digital Transformation Strategist | Startup Evangelist</div>
+    </div>
+    <div class="tc reveal rd2">
+      <div class="tc-focus">Success Story: Victory Over Delays and Unjust Charges</div>
+      <p class="tc-text">After a tragic accident, a total loss claim remained stalled for years due to a pending court judgment. Once documents were finally submitted, the insurer employed stalling tactics and attempted to deduct arbitrary "salvage values" while alleging missing parts. Furthermore, the dealership demanded exorbitant parking fees of ₹500 per day for the four-year duration. Through strategic intervention, we compelled the insurer to abandon intimidation tactics, and successfully secured a full settlement. Most importantly, we ensured the dealership completely waived all parking charges, delivering a comprehensive win for the claimant.</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Case Study</div>
+      <div class="tc-role">Consumer Empowerment</div>
+    </div>
+    <div class="tc reveal">
+      <div class="tc-focus">Success Story: Ancestral Land Dispute Resolution</div>
+      <p class="tc-text">"Following the tragic loss of my husband during the COVID-19 pandemic, our family was left vulnerable. As a housewife with no experience in administrative procedures and children studying abroad, navigating a complex land dispute felt insurmountable. We spent two years with a previous firm that failed to make any progress, leaving us in a state of deep uncertainty. Adv. Shine assisted us in this resolution involving our ancestral land is a profound victory. After years of struggle, seeing the truth finally acknowledged feels like a prayer answered."</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Case Study</div>
+      <div class="tc-role">Individual Empowerment</div>
+    </div>
+    <div class="tc reveal rd1">
+      <div class="tc-focus">Success Story: Championing Justice for the Vulnerable</div>
+      <p class="tc-text">When an underprivileged worker was mis-sold a high-premium life insurance policy through systemic deception—falsifying his education and doubling his reported income—he faced financial ruin. Acting pro-bono, we intervened to challenge this predatory "void ab initio" contract. By systematically escalating the matter through formal grievances and leadership channels, we forced a full investigation. The result was a complete victory: the provider admitted the lapse, cancelling the policy and issuing a full refund with interest. This success reaffirms that with persistent advocacy, the rights of the common man can prevail against corporate negligence.</p>
+      <div class="tc-rule"></div>
+      <div class="tc-author">Pro-Bono Case Study</div>
+      <div class="tc-role">Community Service Initiative</div>
+    </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="contact" id="contact">
+  <div>
+    <div class="sk reveal">Digital Connection</div>
+    <h2 class="st reveal">Happy to<br><em>Connect</em></h2>
+    <p class="sb reveal">We operate virtually, connecting our clients with borderless expertise. Share your situation for a confidential assessment.</p>
+    <div class="reveal rd1">
+      <a href="tel:+919966200969" class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val">+91 9966 200 969</div></div></a>
+      <a href="mailto:shine@leviteconsultancy.com" class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">shine@leviteconsultancy.com</div></div></a>
+      <a href="https://linkedin.com/in/adv-shine-thomas" target="_blank" class="ci-item"><div class="ci-ico">in</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val">/in/adv-shine-thomas</div></div></a>
+      
+      <div class="ci-item" style="border-bottom: none; display: block; padding-top: 32px;">
+        <div class="ci-lbl" style="font-size: 11px; margin-bottom: 12px;">Refer Pro-Bono 🤝</div>
+        <div class="ci-val" style="font-size: 13px; font-style: italic; color: rgba(255,255,255,0.45);">In case as a good Samaritan, you wish to nominate a case deserving Pro Bono assistance like harassment of senior citizens by financial institutions or an unemployed widow not receiving rightful dues from institutions or anything that we can assist. Connect and we shall consider the case under our free community service initiative.</div>
+      </div>
+    </div>
+  </div>
+  <div class="reveal rd2">
+    <form class="cf" style="margin-top:24px" action="https://formsubmit.co/shine@leviteconsultancy.com" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="">
+      <input type="hidden" name="_subject" value="Levite Website – New Enquiry">
+      <div class="cf-grp"><label class="cf-lbl" for="cf-name">Full Name</label><input type="text" id="cf-name" class="cf-in" name="name" placeholder="Your full name" required></div>
+      <div class="cf-row">
+        <div class="cf-grp"><label class="cf-lbl" for="cf-phone">Phone Number</label><input type="tel" id="cf-phone" class="cf-in" name="phone" placeholder="+91 XXXXX XXXXX"></div>
+        <div class="cf-grp"><label class="cf-lbl" for="cf-email">Email Address</label><input type="email" id="cf-email" class="cf-in" name="email" placeholder="your@email.com" required></div>
+      </div>
+      <div class="cf-grp"><label class="cf-lbl" for="cf-message">Brief Description</label><textarea id="cf-message" class="cf-ta" name="message" placeholder="Briefly describe your situation..." required></textarea></div>
+      <button type="submit" class="cf-sub">Submit Request &nbsp;→</button>
+      <p class="cf-note">Every matter is unique. Leave your details with a brief description and you shall receive a call back soon.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="fg">
+    <div>
+      <div class="fn">Levite</div>
+      <span class="fs">Consultancy &amp; Advisory</span>
+      <p class="fd">"Learn, Lead, Levitate."</p>
+    </div>
+    <div>
+      <div class="fct">Navigation</div>
+      <ul class="fl">
+        <li><a href="#about-me">About Me</a></li>
+        <li><a href="#vision">The Vision</a></li>
+        <li><a href="#institutional">Institutional</a></li>
+        <li><a href="#empowerment">Empowerment</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Connect</div>
+      <ul class="fl">
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://linkedin.com/in/adv-shine-thomas">LinkedIn</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="fct">Legal</div>
+      <ul class="fl">
+        <li><a href="#">Disclaimer</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <div class="fc">© 2026 Levite Consultancy &amp; Advisory. All rights reserved. A Lean &amp; Virtual First Global Consultancy.</div>
+    <div class="fn2">The Bar Council of India prohibits advertisement or solicitation by advocates.<br>This website is meant solely for informational purposes.</div>
+  </div>
+</footer>
+
+</div><script>
+/* ── CURSOR ── */
+const dot=document.getElementById('c-dot'),ring=document.getElementById('c-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.cssText=`left:${mx}px;top:${my}px`;});
+(function anim(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.cssText=`left:${rx}px;top:${ry}px`;requestAnimationFrame(anim);})();
+document.querySelectorAll('a,button,.hp,.tc,.about-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(193,168,74,.8)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(193,168,74,.55)';});
+});
+
+/* ── PARTICLE CANVAS (disclaimer bg) ── */
+(function(){
+  const c=document.getElementById('disc-cv');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function rsz(){W=c.width=innerWidth;H=c.height=innerHeight;}
+  rsz();window.addEventListener('resize',rsz);
+  for(let i=0;i<100;i++)pts.push({x:Math.random()*2000,y:Math.random()*1200,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.4+.3,a:Math.random()*6});
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#000810';ctx.fillRect(0,0,W,H);
+    const g=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*.6);
+    g.addColorStop(0,'rgba(0,30,80,.35)');g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.a+=.004;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(193,168,74,${.06+Math.sin(p.a)*.04})`;ctx.fill();
+    });
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const d=Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y);
+      if(d<130){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,40,120,${(1-d/130)*.15})`;ctx.lineWidth=.5;ctx.stroke();}
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── HERO CANVAS (animated mesh) ── */
+(function(){
+  const c=document.getElementById('hcv');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let t=0;
+  function rsz(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
+  rsz();window.addEventListener('resize',rsz);
+  function draw(){
+    const W=c.width,H=c.height;t+=.003;
+    ctx.clearRect(0,0,W,H);
+    const bg=ctx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#000b1f');bg.addColorStop(.6,'#001535');bg.addColorStop(1,'#000d28');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    [{x:.5+Math.sin(t*.7)*.09,y:.88+Math.cos(t*.5)*.04,r:.52,c:'rgba(0,38,120,.22)'},{x:.18+Math.sin(t+1)*.07,y:.5+Math.cos(t*.8)*.09,r:.38,c:'rgba(193,168,74,.038)'},{x:.82+Math.sin(t*.6+2)*.05,y:.42+Math.cos(t*.9)*.07,r:.32,c:'rgba(0,18,80,.2)'}].forEach(o=>{
+      const g=ctx.createRadialGradient(o.x*W,o.y*H,0,o.x*W,o.y*H,o.r*W);
+      g.addColorStop(0,o.c);g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── ENTER SITE ── */
+function enterSite(){
+  const d=document.getElementById('disc'),s=document.getElementById('site');
+  d.style.transition='opacity .8s ease';d.style.opacity='0';
+  s.style.display='block';
+  setTimeout(()=>{d.style.display='none';setTimeout(()=>s.classList.add('show'),30);},800);
+}
+
+/* ── NAV ── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
+function toggleNav(){document.getElementById('nm').classList.toggle('open');}
+document.querySelectorAll('#nm a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nm').classList.remove('open')));
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+}));
+
+/* ── SCROLL REVEAL ── */
+const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
