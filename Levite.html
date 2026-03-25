@@ -115,9 +115,24 @@ img{max-width:100%;height:auto;}
 .hp:last-child{border-right:none;}
 .hp-bg{position:absolute;inset:0;transition:transform .8s var(--ease);}
 .hp:hover .hp-bg{transform:scale(1.06);}
-.hp:nth-child(1) .hp-bg{background:linear-gradient(145deg,#0a1628,#002060);}
-.hp:nth-child(2) .hp-bg{background:linear-gradient(145deg,#050e20,#001035);}
-.hp:nth-child(3) .hp-bg{background:linear-gradient(145deg,#0d1828,#001848);}
+.hp:nth-child(1) .hp-bg{
+  background-image:linear-gradient(145deg,rgba(10,22,40,.88),rgba(0,32,96,.78)),url('./asset/instituation.png');
+  background-size:cover,cover;
+  background-position:center center,center center;
+  background-repeat:no-repeat,no-repeat;
+}
+.hp:nth-child(2) .hp-bg{
+  background-image:linear-gradient(145deg,rgba(5,14,32,.88),rgba(0,16,53,.78)),url('./asset/vision.png');
+  background-size:cover,cover;
+  background-position:center center,center center;
+  background-repeat:no-repeat,no-repeat;
+}
+.hp:nth-child(3) .hp-bg{
+  background-image:linear-gradient(145deg,rgba(13,24,40,.88),rgba(0,24,72,.78)),url('./asset/empoverment.png');
+  background-size:cover,cover;
+  background-position:center center,center center;
+  background-repeat:no-repeat,no-repeat;
+}
 .hp-tex{position:absolute;inset:0;z-index:1;background-image:repeating-linear-gradient(90deg,rgba(193,168,74,.025) 0,rgba(193,168,74,.025) 1px,transparent 1px,transparent 80px);}
 .hp-scrim{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(0,4,18,.9) 0%,rgba(0,4,18,.18) 100%);transition:background .4s;}
 .hp:hover .hp-scrim{background:linear-gradient(to top,rgba(0,8,28,.96) 0%,rgba(0,8,28,.38) 100%);}
@@ -125,8 +140,8 @@ img{max-width:100%;height:auto;}
 .hp:hover .hp-bar{transform:scaleY(1);}
 .hp-top{position:absolute;top:0;left:0;right:0;height:2px;z-index:5;background:linear-gradient(90deg,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
 .hp:hover .hp-top{transform:scaleX(1);}
-.hp-ico{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px;opacity:.05;transition:opacity .4s,transform .5s;user-select:none;}
-.hp:hover .hp-ico{opacity:.1;transform:translate(-50%,-50%) scale(1.15);}
+.hp-ico{position:absolute;z-index:3;top:50%;left:50%;transform:translate(-50%,-50%);font-size:80px;opacity:0;pointer-events:none;transition:opacity .4s,transform .5s;user-select:none;}
+.hp:hover .hp-ico{opacity:0;transform:translate(-50%,-50%) scale(1.15);}
 .hp-num{position:absolute;top:18px;right:20px;z-index:3;font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:700;line-height:1;color:rgba(193,168,74,.05);transition:color .4s;user-select:none;}
 .hp:hover .hp-num{color:rgba(193,168,74,.12);}
 .hp-ct{position:absolute;z-index:6;bottom:0;left:0;right:0;padding:0 clamp(16px,3vw,28px) clamp(18px,3vw,26px);display:flex;align-items:flex-end;justify-content:space-between;}
@@ -138,8 +153,9 @@ img{max-width:100%;height:auto;}
 .gdiv{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 25%,var(--gold-lt) 50%,var(--gold) 75%,transparent);}
 
 /* ════ ABOUT / SECTIONS ════ */
-.about{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:linear-gradient(160deg,#050a18,#000b1f);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,8vw,100px);align-items:center;}
+.about{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:linear-gradient(160deg,#050a18,#000b1f);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,8vw,100px);align-items:start;}
 .about.rev {grid-template-columns:1.1fr 1fr;}
+.about > div{align-self:start;}
 .sk{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:14px;}
 .sk::before{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0;}
 .st{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:400;line-height:1.1;color:var(--white);margin-bottom:28px;}
@@ -149,6 +165,176 @@ img{max-width:100%;height:auto;}
 .about-card::before,.about-card::after{content:'';position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid;}
 .about-card::before{top:-1px;right:-1px;border-width:2px 2px 0 0;}
 .about-card::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+/* Section visual — unified image card (Vision / Institutional / Empowerment) */
+.vision-card-wrap{
+  padding:0!important;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(165deg,rgba(0,10,28,.92) 0%,rgba(0,4,14,.98) 100%)!important;
+  border-color:rgba(193,168,74,.22)!important;
+  box-shadow:0 18px 56px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.04);
+  overflow:hidden;
+}
+.vision-frame{
+  position:relative;
+  flex:1;
+  display:grid;
+  place-items:center;
+  padding:clamp(10px,2vw,16px);
+  box-sizing:border-box;
+  margin:clamp(12px,2.5vw,18px);
+  margin-bottom:0;
+  min-height:min(280px,38vw);
+  aspect-ratio:4/3;
+  max-height:min(480px,62vh);
+  overflow:hidden;
+  border:1px solid rgba(193,168,74,.18);
+  border-radius:2px;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 100%,rgba(0,45,110,.12),transparent 58%),
+    linear-gradient(180deg,rgba(193,168,74,.05),transparent 45%),
+    rgba(0,6,18,.45);
+}
+.vision-frame::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(90deg,rgba(193,168,74,.04) 0,rgba(193,168,74,.04) 1px,transparent 1px,transparent 56px);
+  opacity:.6;
+  pointer-events:none;
+}
+.vision-frame::after{
+  content:'';
+  position:absolute;inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset 0 0 40px rgba(0,4,14,.35);
+}
+.vision-image{
+  position:relative;
+  z-index:1;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+  min-width:0;
+  min-height:0;
+  object-fit:contain;
+  object-position:center center;
+  display:block;
+  margin:0;
+  justify-self:center;
+  align-self:center;
+  filter:drop-shadow(0 12px 32px rgba(0,0,0,.45));
+}
+.vision-tagline{
+  font-family:'Cinzel',serif;
+  font-size:clamp(9px,1.5vw,10.5px);
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-align:center;
+  margin:0;
+  padding:clamp(16px,3vw,22px) clamp(18px,4vw,32px);
+  line-height:1.55;
+  background:linear-gradient(180deg,rgba(0,6,18,.95),rgba(0,4,12,.99));
+  border-top:1px solid rgba(193,168,74,.22);
+  flex-shrink:0;
+}
+.vision-card-wrap--no-tagline .vision-frame{margin-bottom:clamp(12px,2.5vw,18px);}
+@media(max-width:900px){
+  .vision-frame{
+    aspect-ratio:auto;
+    min-height:240px;
+    max-height:min(420px,52vh);
+  }
+  .vision-image{max-height:min(360px,46vh);}
+}
+
+/* About — principal profile (about.jpeg) */
+.about.about-principal{
+  align-items:start;
+  grid-template-columns:minmax(0,min(420px,100%)) minmax(0,1fr);
+  gap:clamp(14px,2.2vw,28px) clamp(18px,2.8vw,36px);
+}
+.about-principal{
+  background:radial-gradient(ellipse 90% 45% at 30% 0%,rgba(0,32,80,.22),transparent 52%),
+    radial-gradient(ellipse 70% 40% at 100% 100%,rgba(193,168,74,.06),transparent 50%),
+    var(--navy-deep);
+}
+.about-principal-visual{align-self:start;position:relative;}
+.about-principal-portrait{margin:0;max-width:min(420px,100%);width:100%;}
+.about-principal-frame{
+  position:relative;overflow:hidden;aspect-ratio:3/4;max-height:min(540px,70vh);
+  border:1px solid rgba(193,168,74,.28);
+  border-radius:2px;
+  background:rgba(0,6,18,.5);
+  box-shadow:0 24px 64px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);
+  display:block;
+}
+.about-principal-frame::before{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(165deg,rgba(0,8,22,.15) 0%,transparent 45%,rgba(0,4,14,.82) 100%);
+}
+.about-principal-frame::after{
+  content:'';position:absolute;top:0;bottom:0;left:0;width:3px;z-index:2;pointer-events:none;
+  background:linear-gradient(180deg,var(--gold),var(--gold-dim));
+  opacity:.9;
+}
+.about-principal-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 45%;
+  display:block;
+  transition:transform .6s var(--ease);
+}
+.about-principal-visual:hover .about-principal-img{transform:scale(1.02);}
+.about-principal-meta{
+  margin-top:clamp(22px,4vw,32px);
+  padding-top:clamp(20px,3.5vw,26px);
+  border-top:1px solid rgba(193,168,74,.12);
+}
+.about-principal-role{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:3.8px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px;font-weight:600;
+}
+.about-principal-name{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4.5vw,34px);font-weight:600;color:var(--white);line-height:1.15;margin-bottom:clamp(14px,3vw,18px);display:block;
+}
+.about-principal-creds{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:clamp(14px,3vw,18px);}
+.about-principal-creds span{
+  font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--w80);padding:7px 12px;border:1px solid rgba(193,168,74,.22);background:rgba(0,8,22,.5);
+}
+.about-principal-lead{font-size:clamp(13.5px,2vw,14.5px);line-height:1.75;color:var(--w80);font-weight:300;margin:0;}
+.about-principal-copy{min-width:0;}
+.about-principal-quote-wrap{
+  grid-column:1/-1;
+  width:100%;
+  max-width:none;
+  margin-top:0;
+  padding-top:clamp(6px,1.2vw,12px);
+}
+.about-principal-quote{
+  margin:0 auto;
+  padding:clamp(14px,2.2vw,20px) clamp(12px,3vw,32px);
+  max-width:none;
+  width:100%;
+  box-sizing:border-box;
+  border:none;
+  border-top:2px solid var(--gold);
+  background:linear-gradient(180deg,rgba(193,168,74,.08),rgba(193,168,74,.015));
+  font-size:clamp(12px,1.25vw,13.5px);
+  line-height:1.5;
+  text-align:center;
+  color:var(--gold);
+  font-weight:400;
+}
+@media(max-width:900px){
+  .about-principal.rev .about-principal-visual{order:1;}
+  .about-principal.rev .about-principal-copy{order:2;}
+  .about-principal.rev .about-principal-quote-wrap{order:3;}
+  .about-principal-portrait{max-width:none;}
+  .about-principal-frame{max-height:min(480px,55vh);}
+}
 
 /* Custom List for Institutional */
 .core-list {list-style: none; margin-top: 24px;}
@@ -156,12 +342,21 @@ img{max-width:100%;height:auto;}
 .core-list li::before{content:'✦';color:var(--gold);font-size:14px;margin-top:2px;}
 .core-list li strong{color:var(--white);font-weight:500;font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,18px);letter-spacing:0.5px;}
 
+.inst-cta-wrap{margin-top:36px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.inst-cta{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:clamp(9px,1.85vw,11px);letter-spacing:clamp(1px,0.35vw,2.5px);text-transform:uppercase;font-weight:600;color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:16px clamp(14px,3vw,28px);min-height:48px;white-space:nowrap;transition:background .3s,color .3s,box-shadow .3s;}
+.inst-cta:hover{background:var(--gold);color:var(--navy-deep);box-shadow:0 0 28px rgba(193,168,74,.25);}
+
 /* ════ SCROLLING TESTIMONIALS ════ */
 .test{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:var(--navy-deep);overflow:hidden;}
 .sec-hd{text-align:center;margin-bottom:72px;position:relative;z-index:1;}
 .sec-hd .sk{justify-content:center;}
 .sec-hd .sk::before{display:none;}
 .sec-hd .sk::after{content:'';width:32px;height:1px;background:var(--gold);flex-shrink:0;}
+
+/* Community section centered header alignment */
+#community > div{justify-self:center;text-align:center;}
+#community .sk{justify-content:center;}
+#community .sb{text-align:center;}
 
 /* Horizontal Scroll Grid */
 .test-grid {
@@ -188,6 +383,8 @@ img{max-width:100%;height:auto;}
 
 /* ════ CONTACT ════ */
 .contact{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:linear-gradient(160deg,#050a18,#000b1f);display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(40px,8vw,90px);align-items:start;}
+.contact-fee-line{margin:0 0 clamp(18px,3vw,22px);padding:0 0 clamp(14px,2.5vw,18px);border-bottom:1px solid rgba(193,168,74,.12);font-family:'Raleway',sans-serif;font-size:16px;line-height:1.55;color:var(--w80);font-weight:700;}
+.contact-fee-line .fee-amt{color:var(--gold);}
 .ci-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(193,168,74,.08); text-decoration: none;}
 .ci-item:first-of-type{border-top:1px solid rgba(193,168,74,.08);}
 .ci-ico{width:44px;height:44px;flex-shrink:0;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;transition:border-color .3s; color: var(--gold);}
@@ -214,7 +411,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 .fg{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:clamp(24px,5vw,64px);margin-bottom:56px;}
 .fn{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--white);letter-spacing:2px;}
 .fs{font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block;}
-.fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.7;color:var(--w55);margin-bottom:28px;}
+.fd{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.7;color:var(--w55);margin-bottom:18px;}
+.footer-logo{display:block;width:auto;max-width:min(300px,85vw);height:auto;max-height:118px;object-fit:contain;margin-top:6px;opacity:.95;}
 .fct{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border);}
 .fl{list-style:none;display:flex;flex-direction:column;gap:12px;}
 .fl a{font-size:12.5px;color:var(--w55);text-decoration:none;font-weight:300;display:flex;align-items:center;gap:10px;transition:color .3s;}
@@ -240,6 +438,7 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 /* Desktop to tablet */
 @media(max-width:1100px){
   .about,.contact{grid-template-columns:1fr;gap:60px;padding:90px 48px;}
+  .about.about-principal{grid-template-columns:1fr;gap:clamp(20px,3.5vw,36px);}
   .about.rev{grid-template-columns:1fr;}
   .fg{grid-template-columns:1fr 1fr;gap:40px;}
   .nav-menu{gap:28px;}
@@ -373,13 +572,14 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 <nav class="nav" id="nav">
   <div class="nav-bg"></div>
   <a href="#" class="nav-logo">
-    <img src="levite-logo.png" alt="Levite Consultancy &amp; Advisory" class="nav-logo-img">
+    <img src="./asset/logo.png" alt="Levite Consultancy &amp; Advisory" class="nav-logo-img">
   </a>
   <ul class="nav-menu" id="nm">
     <li><a href="#about-me">About Me</a></li>
-    <li><a href="#vision">The Vision</a></li>
     <li><a href="#institutional">Institutional</a></li>
+    <li><a href="#vision">The Vision</a></li>
     <li><a href="#empowerment">Empowerment</a></li>
+    <li><a href="#community">Community</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#contact" class="nav-cta">Connect</a></li>
   </ul>
@@ -399,27 +599,27 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       <h3 style="font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 4px; margin-top: 20px; font-weight: 500;">Learn, Lead, Levitate.</h3>
       <p class="hb-desc">In an age where AI-driven automation often creates barriers between institutions and individuals, Levite provides the modern support structure to navigate the digital shift. We empower you to Learn the cause of the complexity, Lead the path to accountability, and Levitate beyond the gravity of systemic glitches.</p>
     </div>
-    <div class="hb-tag" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
+    <div class="hb-tag" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
       Read More <span class="a">›</span>
     </div>
   </div>
 
   <div class="hero-panels">
-    <div class="hp" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
-      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
-      <div class="hp-bar"></div><div class="hp-top"></div>
-      <div class="hp-ico">👁️</div><div class="hp-num">A</div>
-      <div class="hp-ct">
-        <div class="hp-label">The Vision</div>
-        <div class="hp-cta">Explore <span>›</span></div>
-      </div>
-    </div>
     <div class="hp" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
       <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
       <div class="hp-bar"></div><div class="hp-top"></div>
-      <div class="hp-ico">🏢</div><div class="hp-num">B</div>
+      <div class="hp-ico">🏢</div><div class="hp-num">A</div>
       <div class="hp-ct">
         <div class="hp-label">Institutional</div>
+        <div class="hp-cta">Explore <span>›</span></div>
+      </div>
+    </div>
+    <div class="hp" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
+      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
+      <div class="hp-bar"></div><div class="hp-top"></div>
+      <div class="hp-ico">👁️</div><div class="hp-num">B</div>
+      <div class="hp-ct">
+        <div class="hp-label">The Vision</div>
         <div class="hp-cta">Explore <span>›</span></div>
       </div>
     </div>
@@ -437,42 +637,39 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 
 <div class="gdiv"></div>
 
-<section class="about" id="vision">
-  <div>
-    <div class="sk reveal">Panel A</div>
-    <h2 class="st reveal">The <em>Vision</em></h2>
-    <p class="sb reveal">My Vision for Levite Consultancy</p>
-    <p class="sb reveal rd1">Levite Consultancy was conceived during a break from my active employment of around 20 years in 2021, while I was engaged in part-time insurance claims and business consultancy assignments. This period also allowed me to immerse myself in extensive study and research of law, development in AI and most importantly the conjunction of all of it. </p>
-    <p class="sb reveal rd2">My core belief for Levite is captured in our tagline: <em>Learn, Lead, Levitate.</em> It embodies the journey I envision for myself, our clients, and our associates – from acquiring essential knowledge, to confidently leading and implementing innovation for wider good, and ultimately, to rising above challenges and achieving wellbeing, through the power of AI.</p>
-  </div>
-  <div class="reveal rd2">
-    <div class="about-card" style="padding: 60px; text-align: center;">
-      <div style="font-size: 70px; margin-bottom: 20px;">👁️</div>
-      <p style="font-size: 18px; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">Learn. Lead. Levitate.</p>
-    </div>
-  </div>
-</section>
-
-<div class="gdiv"></div>
-
 <section class="about rev" id="institutional" style="background: linear-gradient(135deg, #020610, #001233);">
   <div class="reveal rd2">
-    <div class="about-card" style="background: transparent; border: none; padding: 0;">
-      <div class="about-card-visual" style="width: 100%; height: 350px; background: linear-gradient(to bottom, rgba(193,168,74,0.05), transparent), url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 opacity=%220.1%22><defs><pattern id=%22grid%22 width=%2240%22 height=%2240%22 patternUnits=%22userSpaceOnUse%22><path d=%22M 40 0 L 0 0 0 40%22 fill=%22none%22 stroke=%22%23c1a84a%22 stroke-width=%221%22/></pattern></defs><rect width=%22100%25%22 height=%22100%25%22 fill=%22url(%23grid)%22/></svg>'); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;">
-        <div style="font-size: 80px; text-shadow: 0 0 30px rgba(193,168,74,0.5);">🏢</div>
+    <div class="about-card vision-card-wrap vision-card-wrap--no-tagline">
+      <div class="vision-frame">
+        <img src="./asset/instituation.png" alt="Institutional" class="vision-image" loading="lazy" decoding="async">
       </div>
     </div>
   </div>
   <div>
     <div class="sk reveal">For Organisations</div>
     <h2 class="st reveal"><em>Institutional</em></h2>
-    <p class="sb reveal">This page details strategic consulting for enterprises, focusing on safeguarding against the new age service automation, Boatification of critical Support functions by service providers, SME M&amp;A support, and insurance claims handholding. It emphasizes how lean, custom teams are assembled globally to handle specific projects.</p>
-    
-    <ul class="core-list reveal rd1">
-      <li><div><strong>Conflict &amp; Complexity Management</strong><br>Resolving claims stalled by conflicting insurance policy interpretations and surveyor opinions.</div></li>
-      <li><div><strong>Mitigation of Interest</strong><br>Managing conflicting interests between banks, insurance companies, and policyholders to find equitable solutions.</div></li>
-      <li><div><strong>Collaborations for growth</strong><br>In a world of investor backed intuitions the formula for success is to be agile and proactive. We work with challengers to have the right resource at the right time.</div></li>
-    </ul>
+    <p class="sb reveal"><strong>The Obstacle:</strong> The &quot;AI Application&quot; in corporate support functions. Enterprises are losing millions in complex insurance claims because rigid algorithms and surveyor protocols cannot process human nuance or complex liabilities.</p>
+    <p class="sb reveal rd1"><strong>The Solution:</strong> Agile and pro-active Conflict Management. We assemble expert teams based on need to secure equitable outcomes.</p>
+    <p class="inst-cta-wrap reveal rd2"><a href="#contact" class="inst-cta">Facing an automated wall? Let us review your case. <span aria-hidden="true">›</span></a></p>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about" id="vision">
+  <div>
+    <div class="sk reveal">Vision</div>
+    <h2 class="st reveal">The <em>Vision</em></h2>
+    <p class="sb reveal rd1">AI is the greatest lever of our generation—but right now, it heavily favors massive institutions. Our vision is to provide support till this great power is democratized.</p>
+    <p class="sb reveal rd2">By combining deep legal rigor with AI-driven solutions, we try to bridge the gap between human accountability and faceless automated systems.</p>
+  </div>
+  <div class="reveal rd2">
+    <div class="about-card vision-card-wrap">
+      <div class="vision-frame">
+        <img src="./asset/vision.png" alt="The Vision" class="vision-image" loading="lazy" decoding="async">
+      </div>
+      <p class="vision-tagline">Learn. Lead. Levitate.</p>
+    </div>
   </div>
 </section>
 
@@ -482,34 +679,56 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
   <div>
     <div class="sk reveal">For Individuals</div>
     <h2 class="st reveal"><em>Empowerment</em></h2>
-    <p class="sb reveal">This page focuses on Individuals either mislead by service providers at times due to unfair trade practices or facing issues of deficiency in service which at times further gets aggravated by use of AI by service providers.</p>
+    <p class="sb reveal"><strong>The Obstacle:</strong> Interacting with automated Systems. Individuals are fighting faceless corporate algorithms that unjustly advance &apos;Profits first&apos; policy, relying on &apos;void ab initio&apos; traps or other unfair trade practices to exhaust individual rights.</p>
+    <p class="sb reveal rd1"><strong>The Solution:</strong> Algorithmic Decoding &amp; consultancy. We step in to break the automated roadblocks, by providing you the foothold to defend your rights and trying to restore systemic balance.</p>
   </div>
   <div class="reveal rd2">
-    <div class="about-card" style="padding: 60px; text-align: center;">
-      <div style="font-size: 70px; margin-bottom: 20px;">🛡️</div>
-      <p style="font-size: 18px; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">Restoring Balance.</p>
+    <div class="about-card vision-card-wrap">
+      <div class="vision-frame">
+        <img src="./asset/empoverment.png" alt="Empowerment" class="vision-image" loading="lazy" decoding="async">
+      </div>
+      <p class="vision-tagline">Restoring Balance.</p>
     </div>
   </div>
 </section>
 
 <div class="gdiv"></div>
 
-<section class="about rev" id="about-me" style="background: var(--navy-deep);">
-  <div class="reveal rd2">
-    <div class="about-card">
-      <div class="aa" style="font-size: 14px; margin-bottom: 12px;">Principal Consultant</div>
-      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: var(--white); margin-bottom: 16px;">Adv. Shine Thomas</h3>
-      <p style="font-size: 14px; line-height: 1.8; color: var(--w80); font-weight: 300; margin-bottom: 24px;">Led by Adv. Shine Thomas, holding qualifications in <strong>B.Com, PGDBM, FIII, LLB</strong>—combining legal rigor with deep insurance and business management expertise.</p>
-      <div style="height: 1px; background: var(--border); margin-bottom: 24px;"></div>
-      <p style="font-size: 14px; line-height: 1.8; color: var(--gold); font-weight: 400;">We are a new-age global entity built on a lean concept of a purely online presence. We focus exclusively on the quality of expertise, approaching each assignment as a project and constituting custom teams of world-class talent tailored to identify holistic solutions. And most importantly with AI at the core of everything we do.</p>
-    </div>
+<section class="about rev about-principal" id="about-me">
+  <div class="reveal rd2 about-principal-visual">
+    <figure class="about-principal-portrait">
+      <div class="about-principal-frame">
+        <img src="./asset/about.jpeg" alt="Adv. Shine Thomas, Principal Consultant" class="about-principal-img" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="about-principal-meta">
+        <span class="about-principal-role">Principal Consultant</span>
+        <span class="about-principal-name">Adv. Shine Thomas</span>
+        <div class="about-principal-creds" aria-label="Qualifications">
+          <span>B.Com</span><span>PGDBM</span><span>FIII</span><span>LLB</span>
+        </div>
+        <p class="about-principal-lead">Combining legal rigor with deep insurance and business management expertise—aligned for the AI-driven landscape.</p>
+      </figcaption>
+    </figure>
   </div>
-  <div>
+  <div class="about-principal-copy">
     <div class="sk reveal">About Levite</div>
     <h2 class="st reveal">Advocate Shine Thomas<br><em>Speaks</em></h2>
     <p class="sb reveal">I view the AI revolution as the next seismic shift, comparable in impact to the internet and telecommunication revolution. Recognizing this impending transformation, I made a major strategic move in 2021: I stepped away from my Senior Vice President role at a leading specialty insurance MNC to invest intensely in realigning myself with the coming age embedded in AI.</p>
     <p class="sb reveal rd1">My two-decade career is built on deep operational familiarity with financial and insurance sectors, starting my career with a successful startup and then working for 12 years in a leading MNC. This enabled me to cover the entire administration spectrum, from product design to large claims (including property, liabilities, and niche financial products). This background, validated by my Fellowship in Insurance (FIII), makes me a seasoned professional in complex dynamic financial situations.</p>
-    <p class="sb reveal rd2">Now, as a consultant and registered advocate, I focus on bridging this industry knowledge with strategic technology for the larger good. I leverage my experience and extensive network to ensure customers are empowered by technology, not victimized by its misapplication. I believe the future lies in combining specialized human insight with AI's power.</p>
+    <p class="sb reveal rd2">Now, as a consultant and registered advocate, I focus on bridging this industry knowledge with strategic technology for the larger good. I leverage my experience and extensive network to ensure customers are empowered by technology, not victimized by its misapplication. I believe the future lies in combining specialized human insight with AI&apos;s power.</p>
+  </div>
+  <div class="about-principal-quote-wrap reveal rd3">
+    <p class="about-principal-quote">We are a new-age global entity built on a lean concept of a purely online presence.<br>We focus exclusively on the quality of expertise, approaching each assignment as a project and constituting custom teams of world-class talent tailored to identify holistic solutions.<br>And most importantly with AI at the core of everything we do.</p>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about" id="community" style="background: linear-gradient(160deg, #050a18, #000b1f);">
+  <div style="grid-column: 1 / -1; max-width: min(880px, 100%);">
+    <div class="sk reveal">Community</div>
+    <h2 class="st reveal">A Commitment to the <em>Community</em></h2>
+    <p class="sb reveal">&quot;True advocacy extends beyond corporate victories. If you know a vulnerable individual—a senior citizen harassed by financial institutions, or a widow denied her rightful dues—trapped in the gears of corporate bureaucracy, refer them to us. Levite Consultancy will evaluate it under our free, pro-bono community service initiative. Because justice should not be a luxury.&quot;</p>
   </div>
 </section>
 
@@ -588,14 +807,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
     <h2 class="st reveal">Happy to<br><em>Connect</em></h2>
     <p class="sb reveal">We operate virtually, connecting our clients with borderless expertise. Share your situation for a confidential assessment.</p>
     <div class="reveal rd1">
-      <a href="tel:+919966200969" class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val">+91 9966 200 969</div></div></a>
       <a href="mailto:shine@leviteconsultancy.com" class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">shine@leviteconsultancy.com</div></div></a>
       <a href="https://linkedin.com/in/adv-shine-thomas" target="_blank" class="ci-item"><div class="ci-ico">in</div><div><div class="ci-lbl">LinkedIn</div><div class="ci-val">/in/adv-shine-thomas</div></div></a>
-      
-      <div class="ci-item" style="border-bottom: none; display: block; padding-top: 32px;">
-        <div class="ci-lbl" style="font-size: 11px; margin-bottom: 12px;">Refer Pro-Bono 🤝</div>
-        <div class="ci-val" style="font-size: 13px; font-style: italic; color: rgba(255,255,255,0.45);">In case as a good Samaritan, you wish to nominate a case deserving Pro Bono assistance like harassment of senior citizens by financial institutions or an unemployed widow not receiving rightful dues from institutions or anything that we can assist. Connect and we shall consider the case under our free community service initiative.</div>
-      </div>
     </div>
   </div>
   <div class="reveal rd2">
@@ -603,11 +816,9 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="">
       <input type="hidden" name="_subject" value="Levite Website – New Enquiry">
+      <p class="contact-fee-line reveal" role="note">Case Evaluation Fee: <span class="fee-amt">₹500</span> (or <span class="fee-amt">$100</span> for NRIs &amp; OCIs)</p>
       <div class="cf-grp"><label class="cf-lbl" for="cf-name">Full Name</label><input type="text" id="cf-name" class="cf-in" name="name" placeholder="Your full name" required></div>
-      <div class="cf-row">
-        <div class="cf-grp"><label class="cf-lbl" for="cf-phone">Phone Number</label><input type="tel" id="cf-phone" class="cf-in" name="phone" placeholder="+91 XXXXX XXXXX"></div>
-        <div class="cf-grp"><label class="cf-lbl" for="cf-email">Email Address</label><input type="email" id="cf-email" class="cf-in" name="email" placeholder="your@email.com" required></div>
-      </div>
+      <div class="cf-grp"><label class="cf-lbl" for="cf-email">Email Address</label><input type="email" id="cf-email" class="cf-in" name="email" placeholder="your@email.com" required></div>
       <div class="cf-grp"><label class="cf-lbl" for="cf-message">Brief Description</label><textarea id="cf-message" class="cf-ta" name="message" placeholder="Briefly describe your situation..." required></textarea></div>
       <button type="submit" class="cf-sub">Submit Request &nbsp;→</button>
       <p class="cf-note">Every matter is unique. Leave your details with a brief description and you shall receive a call back soon.</p>
@@ -621,13 +832,15 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       <div class="fn">Levite</div>
       <span class="fs">Consultancy &amp; Advisory</span>
       <p class="fd">"Learn, Lead, Levitate."</p>
+      <img src="./asset/logo.png" alt="Levite Consultancy &amp; Advisory" class="footer-logo" loading="lazy" decoding="async">
     </div>
     <div>
       <div class="fct">Navigation</div>
       <ul class="fl">
         <li><a href="#about-me">About Me</a></li>
-        <li><a href="#vision">The Vision</a></li>
+        <li><a href="#community">Community</a></li>
         <li><a href="#institutional">Institutional</a></li>
+        <li><a href="#vision">The Vision</a></li>
         <li><a href="#empowerment">Empowerment</a></li>
       </ul>
     </div>
