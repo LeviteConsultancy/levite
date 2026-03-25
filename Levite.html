@@ -6,6 +6,7 @@
 <title>Levite Consultancy & Advisory | Learn, Lead, Levitate.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="./asset/tabicon.png" type="image/png">
 <style>
 /* ════ TOKENS ════ */
 :root {
@@ -347,7 +348,7 @@ img{max-width:100%;height:auto;}
 .inst-cta:hover{background:var(--gold);color:var(--navy-deep);box-shadow:0 0 28px rgba(193,168,74,.25);}
 
 /* ════ SCROLLING TESTIMONIALS ════ */
-.test{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:var(--navy-deep);overflow:hidden;}
+.test{padding:clamp(48px,10vw,130px) clamp(20px,6vw,80px);background:var(--navy-deep);overflow:hidden;position:relative;}
 .sec-hd{text-align:center;margin-bottom:72px;position:relative;z-index:1;}
 .sec-hd .sk{justify-content:center;}
 .sec-hd .sk::before{display:none;}
@@ -358,6 +359,46 @@ img{max-width:100%;height:auto;}
 #community .sk{justify-content:center;}
 #community .sb{text-align:center;}
 
+/* Testimonials carousel controls (left/right buttons) */
+.test-controls{
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  transform:translateY(-50%);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 clamp(8px,3vw,22px);
+  z-index:10;
+  pointer-events:auto;
+}
+.test-arrow{
+  pointer-events:auto;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  border:1px solid rgba(193,168,74,.35);
+  background:rgba(0,6,18,.55);
+  color:var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  line-height:1;
+  cursor:pointer;
+  transition:transform .2s var(--ease), background .3s var(--ease), border-color .3s var(--ease), opacity .3s var(--ease);
+  user-select:none;
+}
+.test-arrow:hover{
+  transform:translateY(-2px);
+  background:rgba(193,168,74,.12);
+  border-color:rgba(193,168,74,.75);
+}
+.test-arrow:active{
+  transform:translateY(0px);
+}
+
 /* Horizontal Scroll Grid */
 .test-grid {
   display: flex;
@@ -365,14 +406,12 @@ img{max-width:100%;height:auto;}
   gap: 24px;
   padding-bottom: 40px;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--gold-dim) var(--navy-deep);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge legacy */
 }
-.test-grid::-webkit-scrollbar { height: 6px; }
-.test-grid::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
-.test-grid::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
+.test-grid::-webkit-scrollbar { display:none; width:0; height:0; } /* Chrome/Safari */
 
-.tc{background:var(--w04);border:1px solid var(--border);padding:clamp(24px,4vw,44px) clamp(20px,3vw,36px);position:relative;transition:border-color .4s,background .4s;flex:0 0 min(400px,85vw);scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;}
+.tc{background:var(--w04);border:1px solid var(--border);padding:clamp(24px,4vw,44px) clamp(20px,3vw,36px);position:relative;transition:border-color .4s,background .4s;flex:0 0 calc((100% - 24px)/2);scroll-snap-align:start;display:flex;flex-direction:column;min-width:0;}
 .tc:hover{border-color:var(--border-md);background:var(--w08);}
 .tc::before{content:'"';position:absolute;top:20px;right:28px;font-family:'Cormorant Garamond',serif;font-size:80px;line-height:1;color:var(--gold);opacity:.14;}
 .tc-focus{font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom: 12px;}
@@ -739,6 +778,10 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
     <div class="sk reveal">Community Voice &amp; Pro-bono Stories</div>
     <h2 class="st reveal">What People <em>Say</em></h2>
   </div>
+  <div class="test-controls" aria-label="Testimonials carousel controls">
+    <button class="test-arrow left" type="button" aria-label="Previous testimonials">‹</button>
+    <button class="test-arrow right" type="button" aria-label="Next testimonials">›</button>
+  </div>
   <div class="test-grid">
     <div class="tc reveal">
       <div class="tc-focus">Long-term partnership and SPV claim settlement.</div>
@@ -954,6 +997,81 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 /* ── SCROLL REVEAL ── */
 const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+/* ── TESTIMONIALS CAROUSEL (2-up desktop, auto-swipe every 15s) ── */
+(function(){
+  const section=document.getElementById('testimonials');
+  if(!section)return;
+  const grid=section.querySelector('.test-grid');
+  const cards=section.querySelectorAll('.tc');
+  const prevBtn=section.querySelector('.test-arrow.left');
+  const nextBtn=section.querySelector('.test-arrow.right');
+  if(!grid || !prevBtn || !nextBtn || !cards || cards.length<2)return;
+
+  const AUTOPLAY_MS=15000;
+  const prefersReducedMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let pageStep=0;
+  let lastUserAt=Date.now();
+
+  function computeStep(){
+    pageStep=grid.clientWidth;
+  }
+
+  function maxLeft(){
+    return Math.max(0, grid.scrollWidth - grid.clientWidth);
+  }
+
+  function goNext(){
+    if(pageStep<=0)computeStep();
+    const m=maxLeft();
+    const target=Math.min(m, grid.scrollLeft + pageStep);
+    if(target >= m - 1){
+      grid.scrollTo({left:0, behavior:'smooth'});
+    }else{
+      grid.scrollTo({left:target, behavior:'smooth'});
+    }
+  }
+
+  function goPrev(){
+    if(pageStep<=0)computeStep();
+    const target=Math.max(0, grid.scrollLeft - pageStep);
+    grid.scrollTo({left:target, behavior:'smooth'});
+  }
+
+  function markUser(){ lastUserAt=Date.now(); }
+
+  prevBtn.addEventListener('click',(e)=>{e.preventDefault();markUser();goPrev();});
+  nextBtn.addEventListener('click',(e)=>{e.preventDefault();markUser();goNext();});
+
+  grid.addEventListener('pointerdown', markUser, {passive:true});
+  grid.addEventListener('touchstart', markUser, {passive:true});
+  grid.addEventListener('wheel', markUser, {passive:true});
+  window.addEventListener('keydown',e=>{
+    if(e.key==='ArrowLeft' || e.key==='ArrowRight') markUser();
+  });
+
+  section.addEventListener('mouseenter', markUser, {passive:true});
+  section.addEventListener('focusin', markUser, {passive:true});
+
+  function tick(){
+    if(prefersReducedMotion)return;
+    if(Date.now() - lastUserAt >= AUTOPLAY_MS){
+      goNext();
+      markUser();
+    }
+  }
+
+  const timer=setInterval(tick, 250);
+
+  let resizeTimer=null;
+  window.addEventListener('resize',()=>{
+    if(resizeTimer)clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>computeStep(), 150);
+  });
+
+  computeStep();
+  grid.scrollLeft=0;
+})();
 </script>
 </body>
 </html>
