@@ -3,10 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Levite Consultancy & Advisory | Learn, Lead, Levitate.</title>
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000b1f">
+<meta name="msapplication-TileColor" content="#000b1f">
+<meta name="description" content="Levite Consultancy &amp; Advisory — strategic legal and insurance advisory for institutions and individuals. AI-aware, virtual-first global consultancy. Learn, Lead, Levitate.">
+<meta name="keywords" content="Levite, consultancy, insurance advisory, legal advisory, Advocate Shine Thomas, India, pro bono">
+<meta name="author" content="Levite Consultancy &amp; Advisory">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Levite Consultancy &amp; Advisory">
+<meta property="og:title" content="Levite Consultancy &amp; Advisory | Learn, Lead, Levitate.">
+<meta property="og:description" content="Strategic legal and insurance advisory for institutions and individuals. AI-aware, virtual-first global consultancy.">
+<meta property="og:url" content="https://leviteconsultancy.com/">
+<meta property="og:image" content="https://leviteconsultancy.com/asset/logo.png">
+<meta property="og:image:alt" content="Levite Consultancy &amp; Advisory logo">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Levite Consultancy &amp; Advisory | Learn, Lead, Levitate.">
+<meta name="twitter:description" content="Strategic legal and insurance advisory for institutions and individuals. AI-aware, virtual-first global consultancy.">
+<meta name="twitter:image" content="https://leviteconsultancy.com/asset/logo.png">
+<title>Levite Consultancy &amp; Advisory | Learn, Lead, Levitate.</title>
+<link rel="canonical" href="https://leviteconsultancy.com/">
+<link rel="manifest" href="./site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;500;600;700&family=Raleway:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="./asset/tabicon.png" type="image/png">
+<link rel="apple-touch-icon" href="./asset/tabicon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Levite Consultancy \u0026 Advisory","alternateName":"Levite","description":"Strategic legal and insurance advisory for institutions and individuals. Virtual-first global consultancy.","url":"https://leviteconsultancy.com/","email":"shine@leviteconsultancy.com","logo":"https://leviteconsultancy.com/asset/logo.png","image":"https://leviteconsultancy.com/asset/logo.png","sameAs":["https://linkedin.com/in/adv-shine-thomas"],"areaServed":{"@type":"Country","name":"India"},"slogan":"Learn, Lead, Levitate."}
+</script>
 <style>
 /* ════ TOKENS ════ */
 :root {
@@ -30,7 +58,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Raleway',sans-serif;background:var(--navy-deep);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);}
+body{font-family:'Raleway',sans-serif;background:var(--navy-deep);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);min-height:100vh;min-height:100dvh;}
 img{max-width:100%;height:auto;}
 ::selection{background:var(--gold);color:var(--navy-deep);}
 ::-webkit-scrollbar{width:4px;}
@@ -89,7 +117,7 @@ img{max-width:100%;height:auto;}
 .nav-cta{font-family:'Cinzel',serif!important;font-size:9.5px!important;padding:11px 28px;border:1px solid var(--gold)!important;color:var(--gold)!important;transition:background .3s,color .3s!important;}
 .nav-cta:hover{background:var(--gold)!important;color:var(--navy-deep)!important;}
 .nav-cta::after{display:none!important;}
-.nav-burger{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:4px;}
+.nav-burger{display:none;flex-direction:column;gap:6px;cursor:pointer;padding:4px;background:transparent;border:none;color:inherit;font:inherit;-webkit-tap-highlight-color:transparent;}
 .nav-burger span{width:26px;height:1.5px;background:var(--white);display:block;transition:all .3s;}
 
 /* ════ HERO LAYOUT ════ */
@@ -406,6 +434,8 @@ img{max-width:100%;height:auto;}
   gap: 24px;
   padding-bottom: 40px;
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge legacy */
 }
@@ -517,6 +547,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 }
 /* Mobile */
 @media(max-width:600px){
+  .test-controls{padding:0 2px;}
+  .test-arrow{width:40px;height:40px;font-size:22px;}
   .db{padding:36px 24px;margin:16px;}
   .db-title{font-size:22px;}
   .db-text{font-size:13px;margin-bottom:28px;}
@@ -585,11 +617,12 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 }
 /* Prefer reduced motion */
 @media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
 }
 </style>
 </head>
-<body>
+<body id="top">
 
 <div id="c-dot"></div>
 <div id="c-ring"></div>
@@ -615,8 +648,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 
 <nav class="nav" id="nav">
   <div class="nav-bg"></div>
-  <a href="#" class="nav-logo">
-    <img src="./asset/logo.png" alt="Levite Consultancy &amp; Advisory" class="nav-logo-img">
+  <a href="#top" class="nav-logo">
+    <img src="./asset/logo.png" alt="Levite Consultancy &amp; Advisory" class="nav-logo-img" width="260" height="110" decoding="async" fetchpriority="high">
   </a>
   <ul class="nav-menu" id="nm">
     <li><a href="#about-me">About Me</a></li>
@@ -627,9 +660,9 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
     <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#contact" class="nav-cta">Connect</a></li>
   </ul>
-  <div class="nav-burger" id="burger" onclick="toggleNav()">
+  <button type="button" class="nav-burger" id="burger" onclick="toggleNav()" aria-expanded="false" aria-controls="nm" aria-label="Open or close menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
 <div class="hero-wrap">
@@ -991,12 +1024,43 @@ function enterSite(){
 
 /* ── NAV ── */
 window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>40));
-function toggleNav(){document.getElementById('nm').classList.toggle('open');}
-document.querySelectorAll('#nm a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nm').classList.remove('open')));
+function toggleNav(){
+  const nm=document.getElementById('nm'),burger=document.getElementById('burger');
+  if(!nm)return;
+  nm.classList.toggle('open');
+  const open=nm.classList.contains('open');
+  if(burger)burger.setAttribute('aria-expanded',open?'true':'false');
+  if(burger)burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+}
+document.querySelectorAll('#nm a').forEach(a=>a.addEventListener('click',()=>{
+  const nm=document.getElementById('nm'),burger=document.getElementById('burger');
+  if(nm)nm.classList.remove('open');
+  if(burger){burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu');}
+}));
+
+document.addEventListener('click',e=>{
+  const nm=document.getElementById('nm'),burger=document.getElementById('burger');
+  if(!nm||!nm.classList.contains('open'))return;
+  if(burger&&burger.contains(e.target))return;
+  if(nm.contains(e.target))return;
+  nm.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  burger.setAttribute('aria-label','Open menu');
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  const nm=document.getElementById('nm'),burger=document.getElementById('burger');
+  if(!nm||!nm.classList.contains('open'))return;
+  nm.classList.remove('open');
+  if(burger){burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Open menu');}
+});
 
 /* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
-  const t=document.querySelector(a.getAttribute('href'));
+  const href=a.getAttribute('href');
+  if(!href||href==='#'){e.preventDefault();return;}
+  let t=null;
+  try{t=document.querySelector(href);}catch{/* invalid selector */ return;}
   if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
 }));
 
@@ -1053,6 +1117,7 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
   const prefersReducedMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let pageStep=0;
   let lastUserAt=Date.now();
+  const scrollBehavior=()=>(prefersReducedMotion?'auto':'smooth');
 
   function computeStep(){
     pageStep=grid.clientWidth;
@@ -1067,16 +1132,16 @@ document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
     const m=maxLeft();
     const target=Math.min(m, grid.scrollLeft + pageStep);
     if(target >= m - 1){
-      grid.scrollTo({left:0, behavior:'smooth'});
+      grid.scrollTo({left:0, behavior:scrollBehavior()});
     }else{
-      grid.scrollTo({left:target, behavior:'smooth'});
+      grid.scrollTo({left:target, behavior:scrollBehavior()});
     }
   }
 
   function goPrev(){
     if(pageStep<=0)computeStep();
     const target=Math.max(0, grid.scrollLeft - pageStep);
-    grid.scrollTo({left:target, behavior:'smooth'});
+    grid.scrollTo({left:target, behavior:scrollBehavior()});
   }
 
   function markUser(){ lastUserAt=Date.now(); }

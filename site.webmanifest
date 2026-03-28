@@ -1,0 +1,17 @@
+{
+  "name": "Levite Consultancy & Advisory",
+  "short_name": "Levite",
+  "description": "Strategic legal and insurance advisory. Learn, Lead, Levitate.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#000b1f",
+  "theme_color": "#000b1f",
+  "icons": [
+    {
+      "src": "asset/tabicon.png",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
