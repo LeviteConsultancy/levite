@@ -1,0 +1,5 @@
+# Do not publish these as public static files (assets root is ".")
+Dockerfile
+wrangler.toml
+.git
+.gitignore

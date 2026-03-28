@@ -1,0 +1,8 @@
+# Cloudflare Workers — static assets (HTML + /asset)
+# https://developers.cloudflare.com/workers/static-assets/
+
+name = "levite-site"
+compatibility_date = "2025-03-28"
+
+[assets]
+directory = "."
