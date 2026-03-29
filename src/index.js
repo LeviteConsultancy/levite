@@ -1,14 +1,20 @@
-/** Root `/` is proxied to the Levite route on the Workers preview host; all other paths use static assets. */
-const ROOT_PROXY_URL = "https://levite.shine-e19.workers.dev/Levite";
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // Rewrite root → /Levite
     if (url.pathname === "/" || url.pathname === "") {
-      return fetch(ROOT_PROXY_URL);
+      url.pathname = "/Levite";
     }
 
-    return env.ASSETS.fetch(request);
+    let res = await env.ASSETS.fetch(new Request(url.toString(), request));
+
+    // Static assets use `Levite.html` → `/Levite.html`; if `/Levite` misses, serve that file.
+    if (res.status === 404 && url.pathname === "/Levite") {
+      url.pathname = "/Levite.html";
+      res = await env.ASSETS.fetch(new Request(url.toString(), request));
+    }
+
+    return res;
   },
 };
