@@ -3,3 +3,7 @@ Dockerfile
 wrangler.toml
 .git
 .gitignore
+# Worker source (not public)
+src/
+# Let `/` be handled by src/index.js (proxy), not a static index.html
+index.html

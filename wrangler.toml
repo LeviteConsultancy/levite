@@ -1,8 +1,10 @@
-# Cloudflare Workers — static assets (HTML + /asset)
+# Cloudflare Workers — Worker + static assets (HTML + /asset)
 # https://developers.cloudflare.com/workers/static-assets/
 
 name = "levite"
+main = "src/index.js"
 compatibility_date = "2025-03-28"
 
 [assets]
 directory = "."
+binding = "ASSETS"
