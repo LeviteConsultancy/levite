@@ -145,13 +145,13 @@ img{max-width:100%;height:auto;}
 .hp-bg{position:absolute;inset:0;transition:transform .8s var(--ease);}
 .hp:hover .hp-bg{transform:scale(1.06);}
 .hp:nth-child(1) .hp-bg{
-  background-image:linear-gradient(145deg,rgba(10,22,40,.88),rgba(0,32,96,.78)),url('./asset/instituation.png');
+  background-image:linear-gradient(145deg,rgba(5,14,32,.88),rgba(0,16,53,.78)),url('./asset/vision.png');
   background-size:cover,cover;
   background-position:center center,center center;
   background-repeat:no-repeat,no-repeat;
 }
 .hp:nth-child(2) .hp-bg{
-  background-image:linear-gradient(145deg,rgba(5,14,32,.88),rgba(0,16,53,.78)),url('./asset/vision.png');
+  background-image:linear-gradient(145deg,rgba(10,22,40,.88),rgba(0,32,96,.78)),url('./asset/instituation.png');
   background-size:cover,cover;
   background-position:center center,center center;
   background-repeat:no-repeat,no-repeat;
@@ -632,11 +632,11 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
   <div class="db">
     <div class="db-ic"></div>
     <div class="db-seal">
-      <div class="db-kicker">Advisory</div>
+      <div class="db-kicker">Disclaimer</div>
     </div>
     <h2 class="db-title">Welcome to Levite Consultancy &amp; Advisory</h2>
     <div class="db-rule"></div>
-    <p class="db-text">We provide AI powered strategic, lean, and holistic solutions for complex and specialized matters. To comply with the professional rules regarding legal practitioners, this website is meant solely for informational purposes and does not constitute advertisement, solicitation, or professional advice. By proceeding, you acknowledge that you are seeking information about Advocate Shine Thomas and his firm Levite Consultancy &amp; Advisory of your own accord and that no professional relationship is created by accessing this site.</p>
+    <p class="db-text">To comply with the professional rules regarding legal practitioners, this website is meant solely for informational purposes and does not constitute advertisement, solicitation, or professional advice. By proceeding, you acknowledge that you are seeking information about Advocate Shine Thomas and his firm Levite Consultancy &amp; Advisory of your own accord and that no professional relationship is created by accessing this site.</p>
     <div class="db-actions">
       <button class="db-btn" onclick="enterSite()">Agree &amp; Proceed</button>
       <button class="db-ghost" onclick="window.location.href='https://google.com'">Decline</button>
@@ -653,8 +653,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
   </a>
   <ul class="nav-menu" id="nm">
     <li><a href="#about-me">About Me</a></li>
-    <li><a href="#institutional">Institutional</a></li>
     <li><a href="#vision">The Vision</a></li>
+    <li><a href="#institutional">Institutional</a></li>
     <li><a href="#empowerment">Empowerment</a></li>
     <li><a href="#community">Community</a></li>
     <li><a href="#testimonials">Testimonials</a></li>
@@ -674,29 +674,29 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       <div class="hb-kicker">Levite</div>
       <h1 class="hb-title">A LEAN &amp; VIRTUAL FIRST<br><em>Global Consultancy.</em></h1>
       <h3 style="font-family: 'Cinzel', serif; color: var(--gold); letter-spacing: 4px; margin-top: 20px; font-weight: 500;">Learn, Lead, Levitate.</h3>
-      <p class="hb-desc">In an age where AI-driven automation often creates barriers between institutions and individuals, Levite provides the modern support structure to navigate the digital shift. We empower you to Learn the cause of the complexity, Lead the path to accountability, and Levitate beyond the gravity of systemic glitches.</p>
+      <p class="hb-desc">In an age where AI-driven automation often creates barriers, Levite provides the modern support structure to navigate the digital shift. We empower you to Learn the cause of the complexity, Lead the path to accountability, and Levitate beyond the gravity of systemic glitches.</p>
     </div>
-    <div class="hb-tag" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
+    <div class="hb-tag" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
       Read More <span class="a">›</span>
     </div>
   </div>
 
   <div class="hero-panels">
-    <div class="hp" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
-      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
-      <div class="hp-bar"></div><div class="hp-top"></div>
-      <div class="hp-ico">🏢</div><div class="hp-num">A</div>
-      <div class="hp-ct">
-        <div class="hp-label">Institutional</div>
-        <div class="hp-cta">Explore <span>›</span></div>
-      </div>
-    </div>
     <div class="hp" onclick="document.getElementById('vision').scrollIntoView({behavior:'smooth'})">
       <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
       <div class="hp-bar"></div><div class="hp-top"></div>
-      <div class="hp-ico">👁️</div><div class="hp-num">B</div>
+      <div class="hp-ico">👁️</div><div class="hp-num">A</div>
       <div class="hp-ct">
         <div class="hp-label">The Vision</div>
+        <div class="hp-cta">Explore <span>›</span></div>
+      </div>
+    </div>
+    <div class="hp" onclick="document.getElementById('institutional').scrollIntoView({behavior:'smooth'})">
+      <div class="hp-bg"></div><div class="hp-tex"></div><div class="hp-scrim"></div>
+      <div class="hp-bar"></div><div class="hp-top"></div>
+      <div class="hp-ico">🏢</div><div class="hp-num">B</div>
+      <div class="hp-ct">
+        <div class="hp-label">Institutional</div>
         <div class="hp-cta">Explore <span>›</span></div>
       </div>
     </div>
@@ -714,25 +714,6 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
 
 <div class="gdiv"></div>
 
-<section class="about rev" id="institutional" style="background: linear-gradient(135deg, #020610, #001233);">
-  <div class="reveal rd2">
-    <div class="about-card vision-card-wrap vision-card-wrap--no-tagline">
-      <div class="vision-frame">
-        <img src="./asset/instituation.png" alt="Institutional" class="vision-image" loading="lazy" decoding="async">
-      </div>
-    </div>
-  </div>
-  <div>
-    <div class="sk reveal">For Organisations</div>
-    <h2 class="st reveal"><em>Institutional</em></h2>
-    <p class="sb reveal"><strong>The Obstacle:</strong> The &quot;AI Application&quot; in corporate support functions. Enterprises are losing millions in complex insurance claims because rigid algorithms and surveyor protocols cannot process human nuance or complex liabilities.</p>
-    <p class="sb reveal rd1"><strong>The Solution:</strong> Agile and pro-active Conflict Management. We assemble expert teams based on need to secure equitable outcomes.</p>
-    <p class="inst-cta-wrap reveal rd2"><a href="#contact" class="inst-cta">Facing an automated wall? Let us review your case. <span aria-hidden="true">›</span></a></p>
-  </div>
-</section>
-
-<div class="gdiv"></div>
-
 <section class="about" id="vision">
   <div>
     <div class="sk reveal">Vision</div>
@@ -747,6 +728,25 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       </div>
       <p class="vision-tagline">Learn. Lead. Levitate.</p>
     </div>
+  </div>
+</section>
+
+<div class="gdiv"></div>
+
+<section class="about rev" id="institutional" style="background: linear-gradient(135deg, #020610, #001233);">
+  <div class="reveal rd2">
+    <div class="about-card vision-card-wrap vision-card-wrap--no-tagline">
+      <div class="vision-frame">
+        <img src="./asset/instituation.png" alt="Institutional" class="vision-image" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="sk reveal">For Organisations</div>
+    <h2 class="st reveal"><em>Institutional</em></h2>
+    <p class="sb reveal"><strong>The Obstacle:</strong> The Algorithmic Divide. As mega-corporations subtly replace human support with automated systems, standard organizations are finding their operations, claims and disputes trapped in digital loops. Bridging this technological gap is essential to prevent costly delays and systemic deadlocks.</p>
+    <p class="sb reveal rd1"><strong>The Solution:</strong> Agile and proactive Conflict Management. We assemble expert teams based on need to secure equitable outcomes.</p>
+    <p class="inst-cta-wrap reveal rd2"><a href="#contact" class="inst-cta">Facing an automated wall? Let us review your case. <span aria-hidden="true">›</span></a></p>
   </div>
 </section>
 
@@ -921,8 +921,8 @@ footer{background:#000710;border-top:1px solid var(--border);padding:clamp(40px,
       <ul class="fl">
         <li><a href="#about-me">About Me</a></li>
         <li><a href="#community">Community</a></li>
-        <li><a href="#institutional">Institutional</a></li>
         <li><a href="#vision">The Vision</a></li>
+        <li><a href="#institutional">Institutional</a></li>
         <li><a href="#empowerment">Empowerment</a></li>
       </ul>
     </div>
